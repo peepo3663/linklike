@@ -10,6 +10,6 @@ class LinkController {
     def create() {
         def link = new Link(title: params.title, url: params.url)
         link.save()
-        redirect(action: "index")
+		redirect(action: "index")
     }
 }

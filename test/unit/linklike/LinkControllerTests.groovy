@@ -10,8 +10,7 @@ import org.junit.*
  */
 @TestFor(LinkController)
 class LinkControllerTests {
-
-    void testSomething() {
-       fail "Implement me"
+    void testLinkUsable() {
+		
     }
 }
