@@ -40,7 +40,7 @@ class LinkControllerTests {
 
 		controller.like(Link.findByUrl('b'))
 		
-		assert Link.findByUrl('a').votecount == 2
-		assert Link.findByUrl('b').votecount == 1
+		assert Link.findByUrl('a').like == 2
+		assert Link.findByUrl('b').like == 1
 	}
 }
