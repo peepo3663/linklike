@@ -10,7 +10,37 @@ import org.junit.*
  */
 @TestFor(LinkController)
 class LinkControllerTests {
-    void testLinkUsable() {
+	void testLinkUsable() {
+		params.title = 'Title'
+		params.url = 'Url'
+
+		controller.create()
+
+		assert Link.count == 1
+	}
+	void testBeforeLike() {
+		params.title = 'Title'
+		params.url = 'Url'
+
+		controller.create()
+
+		assert Link.like == 0
+	}
+	void testLike() {
+		mockDomain(Link, [
+			[title: 'A', url: 'a'],
+			[title: 'B', url: 'b']
+		])
+
+		def model = controller.index()
+		assert model.links.size() == 3
+
+		controller.like(Link.findByUrl('a'))
+		controller.like(Link.findByUrl('a'))
+
+		controller.like(Link.findByUrl('b'))
 		
-    }
+		assert Link.findByUrl('a').votecount == 2
+		assert Link.findByUrl('b').votecount == 1
+	}
 }
