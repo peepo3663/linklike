@@ -12,4 +12,9 @@ class LinkController {
         link.save()
 		redirect(action: "index")
     }
+	
+	def clickLike(link) {
+		link.like += 1
+		link.save()
+	}
 }
